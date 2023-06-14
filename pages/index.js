@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Meta from "../components/Meta";
+import GenerateForm from "../components/GenerateForm";
 const title = "Waveformer";
 
 export default function Home() {
@@ -14,6 +15,8 @@ export default function Home() {
         <h1 className="calistoga md:text-8xl text-6xl text-black text-center mb-12 pt-10">
           {title}
         </h1>
+
+        <GenerateForm />
       </div>
     </div>
   );
