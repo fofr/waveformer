@@ -156,21 +156,23 @@ const GenerateForm = () => {
     <div>
       {!hasSubmitted && (
         <form className="w-full" onSubmit={handleSubmit}>
-          <label className="block mb-2" htmlFor="prompt">
-            Prompt
+          <label className="block mb-4 font-bold text-2xl" htmlFor="prompt">
+            Prompt 🎸
           </label>
           <div className="flex">
-            <textarea
+            <input
               id="prompt"
               type="text"
               rows="3"
-              className="flex-grow border-2 border-gray-600 rounded-md p-2"
+              className="flex-grow border-2 border-gray-600 rounded-md p-2 mb-4"
               name="prompt"
             />
           </div>
-          <button className="bg-violet-800 text-white px-5 py-3 mt-2 rounded" type="submit">
-            Generate
-          </button>
+          <div className="flex">
+            <button className="block bg-violet-800 text-white w-full px-5 py-3 mt-2 rounded" type="submit">
+              Generate some music
+            </button>
+          </div>
         </form>
       )}
 
