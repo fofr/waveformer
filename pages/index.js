@@ -24,7 +24,7 @@ export default function Home() {
 
         <GenerateForm />
 
-        <div className="md:grid gap-4 md:grid-cols-2 mt-8">
+        <div className="md:grid gap-4 md:grid-cols-2 mt-20">
           <div className="p-6 mb-6 bg-gray-100 rounded-lg">
             <div className="max-w-prose">
               <h2 className="font-bold text-2xl mb-4">

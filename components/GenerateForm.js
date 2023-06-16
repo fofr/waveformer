@@ -183,7 +183,7 @@ const GenerateForm = () => {
             </label>
           </div>
           <div className="flex">
-            <button className="block bg-violet-800 text-white w-full px-5 py-3 mt-2 rounded" type="submit">
+            <button className="block bg-violet-800 text-lg font-bold text-white w-full px-5 py-3 mt-2 rounded shadow-lg" type="submit">
               Make music
             </button>
           </div>
