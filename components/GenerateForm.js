@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Fragment } from 'react';
 import Card from './Card';
 import startingPrompts from '../data/starting-prompts.json';
 import ProgressBar from './ProgressBar';
+import VideoContainer from './VideoContainer';
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -189,34 +190,28 @@ const GenerateForm = () => {
         </form>
       )}
 
-      <div>
-        {hasSubmitted && (
-          <div>
+      {hasSubmitted && (
+        <Fragment>
+          <Card>
             {!videoResult && (
-              <Card>
-                <ProgressBar logs={logs} status={statuses} />
-              </Card>
+              <ProgressBar logs={logs} />
             )}
 
             {videoResult && (
-              <Card heading="Your music">
-                {videoResult && (
-                  <video src={videoResult} controls className="w-full" />
-                )}
-              </Card>
+              <VideoContainer video={videoResult} audio={audioResult} />
             )}
+          </Card>
 
-            <div className="flex flex-row items-center">
-              <button
-                className="w-full bg-violet-800 text-white px-5 py-3 mt-2 rounded"
-                onClick={handleNew}
-              >
-                Make more music
-              </button>
-            </div>
+          <div className="flex flex-row items-center">
+            <button
+              className="w-full bg-violet-800 text-white px-5 py-3 mt-2 rounded"
+              onClick={handleNew}
+            >
+              Make more music
+            </button>
           </div>
-        )}
-      </div>
+        </Fragment>
+      )}
     </div>
   );
 };

@@ -18,7 +18,7 @@ export default function Home() {
         </h1>
 
         <p className="text-center mb-10 -mt-2 text-2xl">
-          Make music from text with <Link className="hover:bg-violet-900 underline hover:no-underline bg-black text-white px-2 py-1 rounded" href="https://replicate.com/joehoover/musicgen-melody">MusicGen</Link> and <Link href="https://replicate.com/" className="hover:bg-violet-900 underline hover:no-underline bg-black text-white px-2 py-1 rounded">Replicate</Link>
+          Make music from text with <Link className="hover:bg-violet-900 underline underline-offset-2 hover:no-underline bg-black text-white px-2 py-1 rounded" href="https://replicate.com/joehoover/musicgen-melody">MusicGen</Link> and <Link href="https://replicate.com/" className="hover:bg-violet-900 underline underline-offset-2 hover:no-underline bg-black text-white px-2 py-1 rounded">Replicate</Link>
         </p>
 
         <GenerateForm />
