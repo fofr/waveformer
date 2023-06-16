@@ -11,7 +11,7 @@ const FooterPromo = () => {
             <Cog8ToothIcon className="h-6 w-6 inline-block pb-1"></Cog8ToothIcon> Replicate
           </h2>
           <p className="mb-4">Replicate lets you run machine learning models with a few lines of code, without needing to understand how machine learning works.</p>
-          <Link href="https://replicate.com/docs" className="bg-black text-white px-5 py-3 mt-2 rounded" type="submit">
+          <Link href="https://replicate.com/docs?utm_source=project&utm_campaign=waveformer" className="bg-black text-white px-5 py-3 mt-2 rounded" type="submit">
             Build with Replicate <ArrowRightIcon className="h-5 w-5 inline-block"></ArrowRightIcon>
           </Link>
         </div>

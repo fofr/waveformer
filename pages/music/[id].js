@@ -45,7 +45,7 @@ export default function Music({ prediction }) {
         </h1>
 
         <p className="text-center md:mb-10 mb-6 -mt-2 md:text-2xl">
-          Made with <Link className="underline underline-offset-4" href="https://github.com/facebookresearch/audiocraft#musicgen">MusicGen</Link> and <Link href="https://replicate.com/joehoover/musicgen-melody" className="underline underline-offset-4">Replicate</Link>
+          Made with <Link className="underline underline-offset-4" href="https://github.com/facebookresearch/audiocraft#musicgen">MusicGen</Link> and <Link href="https://replicate.com/joehoover/musicgen-melody?utm_source=project&utm_campaign=waveformer" className="underline underline-offset-4">Replicate</Link>
         </p>
 
         <Card>
