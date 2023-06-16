@@ -158,7 +158,7 @@ const GenerateForm = () => {
         <form className="w-full" onSubmit={handleSubmit}>
 
           <label className="block mb-4 font-bold text-2xl" htmlFor="music-prompt">
-            Prompt 🎸
+            🎸 Prompt
           </label>
 
           <div className="flex">
