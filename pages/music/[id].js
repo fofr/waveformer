@@ -50,7 +50,7 @@ export default function List() {
         </Head>
 
         <h1 className="calistoga md:text-6xl text-4xl text-black text-center mb-6 pt-10">
-          Waveformer
+          <Link href="/">Waveformer</Link>
         </h1>
 
         <p className="text-center mb-10 -mt-2 text-2xl">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, Fragment } from 'react';
+import { useRouter } from 'next/router';
 import Card from './Card';
 import startingPrompts from '../data/starting-prompts.json';
 import ProgressBar from './ProgressBar';
@@ -11,6 +12,7 @@ const capitalizeFirstLetter = (string) => {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const GenerateForm = () => {
+  const router = useRouter();
   const cancelRef = useRef(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [runningPredictions, setRunningPredictions] = useState([]);
@@ -144,8 +146,9 @@ const GenerateForm = () => {
 
       if (waveformResult) {
         setVideoResult(waveformResult.output);
+        router.push(`/music/${waveformResult.id}`);
       } else {
-        return
+        return;
       }
     }
 
