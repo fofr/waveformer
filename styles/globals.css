@@ -7,10 +7,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.calistoga {
-  font-family: 'Calistoga', serif;
-}
-
-h1 {
+h1, .calistoga {
   font-family: 'Calistoga', serif;
 }
