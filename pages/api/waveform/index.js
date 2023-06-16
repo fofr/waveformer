@@ -1,7 +1,7 @@
 import createApiHandler from "../api-handler";
 
 const handler = createApiHandler(
-  "89d3082a1055872f519b7f5b2b3777dfb8203cc8005da0f6cd8535d635022f54",
+  "116cf9b97d0a117cfe64310637bf99ae8542cc35d813744c6ab178a3e134ff5a",
   (body) => {
     return {
       audio: body.audio,
