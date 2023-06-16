@@ -151,7 +151,7 @@ const GenerateForm = () => {
         <form id="music-form" className="w-full" onSubmit={handleSubmit}>
 
           <label className="block md:mb-4 mb-2 font-bold md:text-2xl text-xl" htmlFor="music-prompt">
-            <span class="md:inline hidden">🎸</span> Prompt
+            <span className="md:inline hidden">🎸</span> Prompt
           </label>
 
           <div className="md:flex">
@@ -189,10 +189,6 @@ const GenerateForm = () => {
           <Card>
             {!videoResult && (
               <ProgressBar logs={logs} />
-            )}
-
-            {videoResult && (
-              <VideoContainer video={videoResult} audio={audioResult} />
             )}
           </Card>
         </Fragment>
