@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Card from './Card';
-import Logs from './Logs';
+import startingPrompts from '../data/starting-prompts.json';
+import ProgressBar from './ProgressBar';
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -18,6 +19,10 @@ const GenerateForm = () => {
   const [areResultsReady, setAreResultsReady] = useState(false);
   const [logs, setLogs] = useState({ musicgen: '', waveform: '' });
   const [statuses, setStatuses] = useState({ musicgen: '', waveform: '' });
+
+  useEffect(() => {
+    setPrompt(startingPrompts[Math.floor(Math.random() * startingPrompts.length)]);
+  }, []);
 
   const fetchOptions = {
     method: "POST",
@@ -75,28 +80,22 @@ const GenerateForm = () => {
     setStatuses({ musicgen: '', waveform: '' });
   };
 
-  const handleCancel = async (e) => {
-    e.preventDefault();
-    cancelRef.current = true;
-    runningPredictions.forEach((id) => {
-      fetch(`/api/${id}?action=cancel`);
-    });
-    handleNew();
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     cancelRef.current = false;
     setHasSubmitted(true);
-    setPrompt(e.target.prompt.value);
+    const musicPrompt = e.target['music-prompt'].value;
+    setPrompt(musicPrompt);
 
     const response = await fetch("/api/musicgen", {
       ...fetchOptions,
-      body: JSON.stringify({ prompt: e.target.prompt.value }),
+      body: JSON.stringify({
+        prompt: musicPrompt,
+        duration: e.target['duration'].value
+      }),
     });
 
     let prediction = await response.json();
-    console.log(prediction, prediction.id)
 
     if (response.status !== 201) {
       setError(prediction.detail);
@@ -156,21 +155,35 @@ const GenerateForm = () => {
     <div>
       {!hasSubmitted && (
         <form className="w-full" onSubmit={handleSubmit}>
-          <label className="block mb-4 font-bold text-2xl" htmlFor="prompt">
+
+          <label className="block mb-4 font-bold text-2xl" htmlFor="music-prompt">
             Prompt 🎸
           </label>
+
           <div className="flex">
             <input
               id="prompt"
               type="text"
               rows="3"
+              defaultValue={prompt}
               className="flex-grow border-2 border-gray-600 rounded-md p-2 mb-4"
-              name="prompt"
+              name="music-prompt"
             />
+
+            <input
+              id="duration"
+              inputMode="numeric"
+              defaultValue="8"
+              className="w-12 border-2 border-gray-600 rounded-md p-2 mb-4 ml-4"
+              name="duration"
+            />
+            <label className="block align-middle pt-5 ml-2 text-md" htmlFor="duration">
+              seconds
+            </label>
           </div>
           <div className="flex">
             <button className="block bg-violet-800 text-white w-full px-5 py-3 mt-2 rounded" type="submit">
-              Generate some music
+              Make music
             </button>
           </div>
         </form>
@@ -179,23 +192,14 @@ const GenerateForm = () => {
       <div>
         {hasSubmitted && (
           <div>
-            <Card heading="Audio">
-              {!audioResult && (
-                <Logs logs={logs.musicgen} status={statuses.musicgen} />
-              )}
-              {audioResult && (
-                <div>
-                  <audio src={audioResult} controls className="w-full" />
-                </div>
-              )}
-            </Card>
+            {!videoResult && (
+              <Card>
+                <ProgressBar logs={logs} status={statuses} />
+              </Card>
+            )}
 
-            {audioResult && (
-              <Card heading="Video">
-                {!videoResult && (
-                  <Logs logs={logs.waveform} status={statuses.waveform} />
-                )}
-
+            {videoResult && (
+              <Card heading="Your music">
                 {videoResult && (
                   <video src={videoResult} controls className="w-full" />
                 )}
@@ -204,10 +208,10 @@ const GenerateForm = () => {
 
             <div className="flex flex-row items-center">
               <button
-                className="bg-violet-800 text-white px-5 py-3 mt-2 rounded"
+                className="w-full bg-violet-800 text-white px-5 py-3 mt-2 rounded"
                 onClick={handleNew}
               >
-                Make another video
+                Make more music
               </button>
             </div>
           </div>
