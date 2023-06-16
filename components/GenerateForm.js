@@ -73,16 +73,6 @@ const GenerateForm = () => {
     return prediction;
   };
 
-  const handleNew = (e) => {
-    e && e.preventDefault();
-    setHasSubmitted(false);
-    setAudioResult(null);
-    setVideoResult(null);
-    setAreResultsReady(false);
-    setLogs({ musicgen: '', waveform: '' });
-    setStatuses({ musicgen: '', waveform: '' });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     cancelRef.current = false;
@@ -204,15 +194,6 @@ const GenerateForm = () => {
               <VideoContainer video={videoResult} audio={audioResult} />
             )}
           </Card>
-
-          <div className="flex flex-row items-center">
-            <button
-              className="w-full bg-violet-800 text-white px-5 py-3 mt-2 rounded"
-              onClick={handleNew}
-            >
-              Make more music
-            </button>
-          </div>
         </Fragment>
       )}
     </div>
