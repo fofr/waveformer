@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Head from "next/head";
 import Meta from "../../components/Meta";
@@ -8,45 +7,37 @@ import FooterPromo from "../../components/FooterPromo";
 import VideoContainer from '../../components/VideoContainer';
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 
-export default function List() {
-  const router = useRouter();
-  const [prompt, setPrompt] = useState('');
-  const [audio, setAudio] = useState('');
-  const [video, setVideo] = useState('');
-  const [prediction, setPrediction] = useState({});
+export async function getServerSideProps(context) {
+  const id = context.params.id;
+  const res = await fetch(`${process.env.PUBLIC_URL}/api/${id}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  })
 
-  const fetchPrediction = async (id) => {
-    fetch(`/api/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      setAudio(data.input.audio)
-      setPrompt(data.input.caption_text)
-      setVideo(data.output)
-      setPrediction(data);
-      console.log(data)
-    })
-    .catch((error) => {
-      console.error('Failed to generate:', error);
-    });
-  };
-
-  useEffect(() => {
-    if (router.query.id) {
-      fetchPrediction(router.query.id);
+  if (!res.ok) {
+    return {
+      notFound: true,
     }
-  }, [router.query]);
+  }
+
+  const prediction = await res.json();
+  return {
+    props: { prediction },
+  }
+}
+
+export default function Music({ prediction }) {
+  const prompt = prediction.input.caption_text;
+  const video = prediction.output;
+  const audio = prediction.input.audio;
+  const title = `${prompt} – Waveformer`;
 
   return (
     <div>
       <div className="container max-w-4xl mx-auto px-8 py-4 pb-10 bg-white border-black min-h-screen">
         <Head>
-          <title>Waveformer</title>
-          <Meta />
+          <title>{title}</title>
+          <Meta prompt={prompt} video={video} />
         </Head>
 
         <h1 className="calistoga md:text-6xl text-4xl text-black text-center mb-6 pt-10">
