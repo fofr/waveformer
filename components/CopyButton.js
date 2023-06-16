@@ -16,7 +16,7 @@ const CopyButton = ({ text, copiedText }) => {
       {!isCopied && (
         <button
           onClick={copyToClipboard}
-          className="flex-grow bg-white hover:bg-green-100 border-2 border-green-600 text-green-600 rounded-md block px-5 py-3"
+          className="text-left flex-grow bg-white hover:bg-green-100 border-2 border-green-600 text-green-600 rounded-md block px-5 py-3"
         >
           <ClipboardDocumentIcon className="h-6 w-6 text-color-white inline-block" /> {text}
         </button>
@@ -24,7 +24,7 @@ const CopyButton = ({ text, copiedText }) => {
       {isCopied && (
         <button
         onClick={copyToClipboard}
-        className="flex-grow bg-green-600 hover:bg-green-900 border-2 border-green-600 text-white rounded-md block px-5 py-3"
+        className="text-left flex-grow bg-green-600 hover:bg-green-900 border-2 border-green-600 text-white rounded-md block px-5 py-3"
       >
         <ClipboardDocumentIcon className="h-6 w-6 text-color-white inline-block" /> {copiedText}
       </button>
