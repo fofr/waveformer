@@ -21,7 +21,7 @@ const FooterPromo = () => {
           <h2 className="font-bold text-2xl mb-4">
             <MusicalNoteIcon className="h-6 w-6 inline-block"></MusicalNoteIcon> MusicGen
           </h2>
-          <p className="mb-4">MusicGen is a <Link className="underline" href="https://github.com/facebookresearch/audiocraft">tool developed by Facebook Research</Link> (Jade Copet, Felix Kreuk, et al).</p>
+          <p className="mb-4">MusicGen is a <Link className="underline" href="https://github.com/facebookresearch/audiocraft">model developed by Facebook Research</Link> (Jade Copet, Felix Kreuk, et al).</p>
           <p className="mb-4">It uses AI to create music. It was trained on 20,000 hours of licensed music.</p>
           <p><Link className="underline" href="https://github.com/facebookresearch/audiocraft/blob/main/MODEL_CARD.md">Model card</Link></p>
         </div>
