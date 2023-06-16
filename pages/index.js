@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Meta from "../components/Meta";
 import GenerateForm from "../components/GenerateForm";
+import Link from "next/link";
 const title = "Waveformer";
 
 export default function Home() {
@@ -12,9 +13,13 @@ export default function Home() {
           <Meta />
         </Head>
 
-        <h1 className="calistoga md:text-8xl text-6xl text-black text-center mb-12 pt-10">
+        <h1 className="calistoga md:text-8xl text-6xl text-black text-center mb-6 pt-10">
           {title}
         </h1>
+
+        <p className="text-center mb-10 -mt-2 text-2xl">
+          Make music from text with <Link className="hover:bg-violet-900 underline hover:no-underline bg-black text-white px-2 py-1 rounded" href="https://replicate.com/joehoover/musicgen-melody">MusicGen</Link> and <Link href="https://replicate.com/" className="hover:bg-violet-900 underline hover:no-underline bg-black text-white px-2 py-1 rounded">Replicate</Link>
+        </p>
 
         <GenerateForm />
       </div>
