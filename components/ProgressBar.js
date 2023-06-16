@@ -44,7 +44,7 @@ const ProgressBar = ({ logs = {} }) => {
     <div ref={containerRef}>
       <div>
         <div className="flex justify-between mb-1">
-          <span className="text-xl mb-4">
+          <span className="md:text-xl mb-4">
             {status}
           </span>
         </div>

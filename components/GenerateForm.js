@@ -150,30 +150,32 @@ const GenerateForm = () => {
       {!hasSubmitted && (
         <form className="w-full" onSubmit={handleSubmit}>
 
-          <label className="block mb-4 font-bold text-2xl" htmlFor="music-prompt">
-            🎸 Prompt
+          <label className="block md:mb-4 mb-2 font-bold md:text-2xl text-xl" htmlFor="music-prompt">
+            <span class="md:inline hidden">🎸</span> Prompt
           </label>
 
-          <div className="flex">
-            <input
+          <div className="md:flex">
+            <textarea
               id="prompt"
               type="text"
-              rows="3"
+              rows="1"
               defaultValue={prompt}
-              className="flex-grow border-2 border-gray-600 rounded-md p-2 mb-4"
+              className="md:flex-grow w-full border-2 border-gray-600 rounded-md p-2 mb-4 md:h-auto h-20"
               name="music-prompt"
             />
 
+            <div className="flex">
             <input
               id="duration"
               inputMode="numeric"
               defaultValue="8"
-              className="w-12 border-2 border-gray-600 rounded-md p-2 mb-4 ml-4"
+              className="block w-12 border-2 border-gray-600 rounded-md p-2 mb-4 md:ml-4"
               name="duration"
             />
-            <label className="block align-middle pt-5 ml-2 text-md" htmlFor="duration">
+            <label className="align-middle pt-5 ml-2 text-md" htmlFor="duration">
               seconds
             </label>
+            </div>
           </div>
           <div className="flex">
             <button className="block bg-violet-800 text-lg font-bold text-white w-full px-5 py-3 mt-2 rounded shadow-lg" type="submit">
