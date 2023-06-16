@@ -17,12 +17,17 @@ const Meta = ({ prompt, video }) => {
       <meta property="twitter:image" content="https://waveformer.replicate.dev/og.png" />
       {video && (
         <Fragment>
-          <meta property="og:video" content={video} />
+          <meta property="og:type" content="video" />
+          <meta property="og:video:url" content={video} />
           <meta property="og:video:secure_url" content={video} />
           <meta property="og:video:type" content="video/mp4" />
           <meta property="og:video:width" content="1000" />
           <meta property="og:video:height" content="665" />
           <meta property="og:video:tag" content="music" />
+
+          <meta property="twitter:player" content={video} />
+          <meta property="twitter:player:width" content="1000" />
+          <meta property="twitter:player:height" content="665" />
         </Fragment>
       )}
     </Fragment>
