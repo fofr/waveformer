@@ -4,10 +4,10 @@ import { ArrowRightIcon, Cog8ToothIcon, MusicalNoteIcon } from "@heroicons/react
 
 const FooterPromo = () => {
   return (
-    <div className="md:grid gap-4 md:grid-cols-2 mt-20">
+    <div className="md:grid gap-4 md:grid-cols-2 md:mt-20 mt-10">
       <div className="p-6 mb-6 bg-gray-100 rounded-lg">
         <div className="max-w-prose">
-          <h2 className="font-bold text-2xl mb-4">
+          <h2 className="font-bold md:text-2xl text-xl mb-4">
             <Cog8ToothIcon className="h-6 w-6 inline-block pb-1"></Cog8ToothIcon> Replicate
           </h2>
           <p className="mb-4">Replicate lets you run machine learning models with a few lines of code, without needing to understand how machine learning works.</p>
@@ -18,7 +18,7 @@ const FooterPromo = () => {
       </div>
       <div className="p-6 mb-6 bg-gray-100 rounded-lg">
         <div className="max-w-prose">
-          <h2 className="font-bold text-2xl mb-4">
+          <h2 className="font-bold md:text-2xl text-xl mb-4">
             <MusicalNoteIcon className="h-6 w-6 inline-block"></MusicalNoteIcon> MusicGen
           </h2>
           <p className="mb-4">MusicGen is a <Link className="underline" href="https://github.com/facebookresearch/audiocraft">model developed by Facebook Research</Link> (Jade Copet, Felix Kreuk, et al).</p>
