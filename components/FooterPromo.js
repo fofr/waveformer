@@ -4,7 +4,7 @@ import { ArrowRightIcon, Cog8ToothIcon, MusicalNoteIcon } from "@heroicons/react
 
 const FooterPromo = () => {
   return (
-    <div className="md:grid gap-4 md:grid-cols-2 md:mt-20 mt-10">
+    <div className="md:grid gap-4 md:grid-cols-2 md:mt-10 mt-6">
       <div className="p-6 mb-6 bg-gray-100 rounded-lg">
         <div className="max-w-prose">
           <h2 className="font-bold md:text-2xl text-xl mb-4">

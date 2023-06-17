@@ -1,24 +1,19 @@
 import React, { useEffect, useState, useRef, Fragment } from 'react';
 import { useRouter } from 'next/router';
-import Card from './Card';
-import startingPrompts from '../data/starting-prompts.json';
 import ProgressBar from './ProgressBar';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const GenerateForm = () => {
+const GenerateForm = ({ prompt: startingPrompt, duration: startingDuration, isMusicPage }) => {
   const router = useRouter();
   const cancelRef = useRef(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [prompt, setPrompt] = useState('');
+  const [prompt, setPrompt] = useState(startingPrompt);
+  const [duration, setDuration] = useState(startingDuration || 8);
   const [audioResult, setAudioResult] = useState(null);
   const [videoResult, setVideoResult] = useState(null);
   const [areResultsReady, setAreResultsReady] = useState(false);
   const [logs, setLogs] = useState({ musicgen: '', waveform: '' });
-
-  useEffect(() => {
-    setPrompt(startingPrompts[Math.floor(Math.random() * startingPrompts.length)]);
-  }, []);
 
   const fetchOptions = {
     method: "POST",
@@ -53,18 +48,28 @@ const GenerateForm = () => {
     return prediction;
   };
 
+  const resetState = () => {
+    setVideoResult(null);
+    setAudioResult(null);
+    setAreResultsReady(false);
+    setLogs({ musicgen: '', waveform: '' });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     cancelRef.current = false;
     setHasSubmitted(true);
     const musicPrompt = e.target['music-prompt'].value;
+    const duration = e.target['duration'].value;
     setPrompt(musicPrompt);
+    setDuration(duration);
+    resetState();
 
     const response = await fetch("/api/musicgen", {
       ...fetchOptions,
       body: JSON.stringify({
         prompt: musicPrompt,
-        duration: e.target['duration'].value
+        duration
       }),
     });
 
@@ -117,6 +122,7 @@ const GenerateForm = () => {
       if (waveformResult) {
         setVideoResult(waveformResult.output);
         router.push(`/music/${waveformResult.id}`);
+        setHasSubmitted(false);
       } else {
         return;
       }
@@ -147,7 +153,7 @@ const GenerateForm = () => {
             <input
               id="duration"
               inputMode="numeric"
-              defaultValue="8"
+              defaultValue={duration}
               className="block w-12 border-2 border-gray-600 rounded-md p-2 mb-4 md:ml-4"
               name="duration"
             />
@@ -158,7 +164,7 @@ const GenerateForm = () => {
           </div>
           <div className="flex">
             <button className="block bg-violet-800 text-lg font-bold text-white w-full px-5 py-3 mt-2 rounded shadow-lg" type="submit">
-              Make music
+              {isMusicPage ? 'Make more music' : 'Make music'}
             </button>
           </div>
         </form>
@@ -166,11 +172,9 @@ const GenerateForm = () => {
 
       {hasSubmitted && (
         <Fragment>
-          <Card>
-            {!videoResult && (
-              <ProgressBar logs={logs} />
-            )}
-          </Card>
+          {!videoResult && (
+            <ProgressBar logs={logs} />
+          )}
         </Fragment>
       )}
     </div>

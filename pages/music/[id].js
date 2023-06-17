@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
 import Head from "next/head";
 import Meta from "../../components/Meta";
 import Link from 'next/link';
 import Card from '../../components/Card';
 import FooterPromo from "../../components/FooterPromo";
 import VideoContainer from '../../components/VideoContainer';
-import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import GenerateForm from '../../components/GenerateForm';
 
 export async function getServerSideProps(context) {
   const id = context.params.id;
@@ -21,16 +20,21 @@ export async function getServerSideProps(context) {
   }
 
   const prediction = await res.json();
+  const duration = parseInt(prediction?.logs?.match(/Duration: 00:00:(\d+).00/)?.[1] ?? 8);
   return {
-    props: { prediction },
+    props: {
+      prompt: prediction.input.caption_text,
+      video: prediction.output,
+      audio: prediction.input.audio,
+      duration,
+      prediction
+    },
   }
 }
 
-export default function Music({ prediction }) {
-  const prompt = prediction.input.caption_text;
-  const video = prediction.output;
-  const audio = prediction.input.audio;
+export default function Music({ prompt, video, audio, duration, prediction }) {
   const title = `${prompt} – Waveformer`;
+  console.log(prediction)
 
   return (
     <div>
@@ -52,15 +56,9 @@ export default function Music({ prediction }) {
           <VideoContainer video={video} audio={audio} />
         </Card>
 
-        <div className="flex flex-row items-center">
-          <Link
-            href="/"
-            className="text-center w-full bg-violet-800 text-white px-5 py-3 mt-2 rounded"
-          >
-            Make more music <ArrowRightIcon className="h-5 w-5 inline-block"></ArrowRightIcon>
-          </Link>
-        </div>
-
+        <Card>
+          <GenerateForm prompt={prompt} duration={duration} isMusicPage={true} />
+        </Card>
         <FooterPromo />
       </div>
     </div>
