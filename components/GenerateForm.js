@@ -3,11 +3,6 @@ import { useRouter } from 'next/router';
 import Card from './Card';
 import startingPrompts from '../data/starting-prompts.json';
 import ProgressBar from './ProgressBar';
-import VideoContainer from './VideoContainer';
-
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -15,13 +10,11 @@ const GenerateForm = () => {
   const router = useRouter();
   const cancelRef = useRef(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [runningPredictions, setRunningPredictions] = useState([]);
   const [prompt, setPrompt] = useState('');
   const [audioResult, setAudioResult] = useState(null);
   const [videoResult, setVideoResult] = useState(null);
   const [areResultsReady, setAreResultsReady] = useState(false);
   const [logs, setLogs] = useState({ musicgen: '', waveform: '' });
-  const [statuses, setStatuses] = useState({ musicgen: '', waveform: '' });
 
   useEffect(() => {
     setPrompt(startingPrompts[Math.floor(Math.random() * startingPrompts.length)]);
@@ -36,10 +29,6 @@ const GenerateForm = () => {
 
   const pollPrediction = async (id, logType) => {
     let prediction;
-    setRunningPredictions((prevRunningPredictions) => [
-      ...prevRunningPredictions,
-      id,
-    ]);
 
     do {
       await sleep(1000);
@@ -54,20 +43,11 @@ const GenerateForm = () => {
         ...prevLogs,
         [logType]: prediction.logs,
       }));
-
-      setStatuses((prevStatuses) => ({
-        ...prevStatuses,
-        [logType]: `${capitalizeFirstLetter(prediction.status)}…`,
-      }));
     } while (
       !cancelRef.current &&
       prediction.status !== "succeeded" &&
       prediction.status !== "canceled" &&
       prediction.status !== "failed"
-    );
-
-    setRunningPredictions((prevRunningPredictions) =>
-      prevRunningPredictions.filter((runningPrediction) => runningPrediction !== id)
     );
 
     return prediction;

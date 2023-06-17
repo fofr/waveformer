@@ -1,9 +1,8 @@
 import Head from "next/head";
+import Link from "next/link";
 import Meta from "../components/Meta";
 import GenerateForm from "../components/GenerateForm";
-import Link from "next/link";
 import FooterPromo from "../components/FooterPromo";
-const title = "Waveformer";
 
 export default function Home() {
   return (
@@ -15,7 +14,7 @@ export default function Home() {
         </Head>
 
         <h1 className="calistoga md:text-8xl text-5xl text-black text-center mb-6 pt-10">
-          {title}
+          Waveformer
         </h1>
 
         <p className="text-center mb-10 -mt-2 md:text-2xl text-xl">
