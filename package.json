@@ -19,7 +19,7 @@
     "@vercel/analytics": "^1.0.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.4.7",
-    "flowbite": "^1.6.6",
+    "flowbite": "^1.8.1",
     "lodash": "^4.17.21",
     "next": "13.4.7",
     "prompt-lists": "^0.2.5",
