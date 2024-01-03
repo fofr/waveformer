@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Card from '../../components/Card';
 import FooterPromo from "../../components/FooterPromo";
 import VideoContainer from '../../components/VideoContainer';
-import GenerateForm from '../../components/GenerateForm';
 
 export async function getServerSideProps(context) {
   const id = context.params.id;
@@ -32,9 +31,8 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function Music({ prompt, video, audio, duration, prediction }) {
+export default function Music({ prompt, video, audio }) {
   const title = `${prompt} – Waveformer`;
-  console.log(prediction)
 
   return (
     <div>
@@ -56,9 +54,6 @@ export default function Music({ prompt, video, audio, duration, prediction }) {
           <VideoContainer video={video} audio={audio} />
         </Card>
 
-        <Card>
-          <GenerateForm prompt={prompt} duration={duration} isMusicPage={true} />
-        </Card>
         <FooterPromo />
       </div>
     </div>
