@@ -11,7 +11,7 @@ This is a [Next.js](https://nextjs.org/) project that uses [Replicate’s API](h
 It also uses:
 
 - [MusicGen](https://github.com/facebookresearch/audiocraft)
-- the [MusicGen model on Replicate](https://replicate.com/joehoover/musicgen-melody)
+- the [MusicGen model on Replicate](https://replicate.com/meta/musicgen)
 - the [audio to waveform model on Replicate](https://replicate.com/fofr/audio-to-waveform)
 
 ## Usage
@@ -24,7 +24,7 @@ npm install
 
 Add your [Replicate API token](https://replicate.com/account#token) to `.env.local`:
 
-```
+```sh
 REPLICATE_API_TOKEN=<your-token-here>
 ```
 
