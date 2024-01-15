@@ -13,7 +13,7 @@
     "test": "npm run lint && npm run build"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.15",
+    "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.0.18",
     "@next/font": "13.4.7",
     "@vercel/analytics": "^1.0.1",
