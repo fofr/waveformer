@@ -16,7 +16,7 @@
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@next/font": "13.4.7",
-    "@vercel/analytics": "^1.0.1",
+    "@vercel/analytics": "^1.1.2",
     "eslint": "8.50.0",
     "eslint-config-next": "13.4.7",
     "flowbite": "^1.8.1",
