@@ -15,7 +15,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.1.1",
-    "@next/font": "13.4.7",
+    "@next/font": "14.2.1",
     "@vercel/analytics": "^1.2.2",
     "eslint": "8.57.0",
     "eslint-config-next": "13.4.7",
