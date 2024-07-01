@@ -18,7 +18,7 @@
     "@next/font": "14.2.3",
     "@vercel/analytics": "^1.2.2",
     "eslint": "8.57.0",
-    "eslint-config-next": "13.4.7",
+    "eslint-config-next": "14.2.4",
     "flowbite": "^1.8.1",
     "lodash": "^4.17.21",
     "next": "14.0.4",
